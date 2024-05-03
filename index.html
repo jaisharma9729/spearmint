@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+    margin: 0;
+    
+  
+}
+p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 1px solid white;
+    border-radius: 50%;
+    position: absolute;
+    transition-duration: 200ms;
+    transition: all 3s ease;
+    animation: cursorAnim 5s infinite alternate;
+    pointer-events: none;
+}
+
+.cursor::after {
+    content: "";
+    width: 90px; 
+    height: 90px;
+    position: absolute;
+    top: -20px; 
+    left: -20px; 
+    background-image: url('/wizaart-img.56787174.gif'); 
+    background-size: cover;
+    animation: cursorAnim2 5s infinite alternate;
+}
+
+
+    </style>
+</head>
+<body>
+    <p>Jai Kumar Sharma</p>
+    <div class="cursor"></div>
+
+
+    <script>
+   const cursor = document.querySelector('.cursor');
+
+document.addEventListener('click', e => {
+    cursor.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;");
+
+    cursor.classList.add("expand");
+
+
+    const screenWidth = window.innerWidth;
+    const clickPosition = e.pageX;
+    const flipDirection = clickPosition > screenWidth / 2 ? -1 : 1;
+    cursor.style.transform = "scaleX(" + flipDirection + ")";
+
+
+    setTimeout(() => {
+        cursor.classList.remove("expand");
+    }, 3000);
+});
+
+
+
+    </script>
+</body>
+</html>
